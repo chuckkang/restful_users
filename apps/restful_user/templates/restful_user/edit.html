@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> {% load static %}
+	<link rel="stylesheet" href="{% static 'restful_user/css/style.css' %}">
+	<script src="{% static 'restful_user/js/js.js' %}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+	<div id="wrapper">
+		CREATE A NEW USER
+		 {% if messages %}
+		 <div id="err">
+		<ul>
+			{% for message in messages %}
+			<li><p style="color:red">{{ message }}</p></li>
+			{% endfor %}
+		</ul>
+		</div>
+		{% endif %}
+		
+		<table border="1" align="center">
+			<form method="POST" action="">
+			<tr>
+				<td>First Name: <input type="text" name="first_name" value="{{user.first_name}}"></td>
+			</tr>
+			<tr>
+				<td>Last Name: <input type="text" name="last_name" value="{{user.last_name}}"></td>
+			</tr>
+			<tr>
+				<td>Email: <input type="text" name="email" value="{{user.email}}"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Edit User"></td>
+			</tr>
+			{%csrf_token%}
+			<input type="hidden" name="id" value="{{user.id}}">
+			</form>
+
+		</table>
+	</div>
+</body>
+
+</html>

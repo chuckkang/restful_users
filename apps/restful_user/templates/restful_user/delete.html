@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> {% load static %}
+	<link rel="stylesheet" href="{% static 'restful_user/css/style.css' %}">
+	<script src="{% static 'restful_user/js/js.js' %}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+	<div id="wrapper">
+		Delete THIS USER?? ARE YOU SURE!
+		<table border="1" align="center">
+			<tr>
+				<th>id</th>
+				<th>First Name</th>
+				<th>Email</th>
+				<th>Created</th>
+			</tr>
+			<tr>
+				<td>{{user.id}}</td>
+				<td>{{user.first_name}} {{user.last_name}}</td>
+				<td>{{user.email}}</td>
+				<td>{{user.created_at}}</td>
+			</tr>
+			<form method="POST" action="delete">
+				{% csrf_token %}
+				<input type="hidden" name="id" value="{{user.id}}">
+				<input type="submit" value="YES">
+			</form>
+		</table>
+	</div>
+</body>
+
+</html>

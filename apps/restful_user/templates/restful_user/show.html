@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> {% load static %}
+	<link rel="stylesheet" href="{% static 'restful_user/css/style.css' %}">
+	<script src="{% static 'restful_user/js/js.js' %}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+	<div id="wrapper">
+		Show the User:{{context}}
+		 {% if messages %}
+		 <div id="err">
+		<ul class="messages">
+			{% for message in messages %}
+			<li> {{ message }}
+				{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+				</li>
+				{% endfor %}
+		</ul>
+		</div>
+		{% endif %}
+		
+		<p align="center"><a href="/">All Users</a></p>
+		<table border="1" align="center">
+			<tr>
+				<th>id</th>
+				<th>First Name</th>
+				<th>Email</th>
+				<th>Created</th>
+				<th>Actions</th>
+			</tr>
+				
+			<tr>
+				<td>{{user.id}}</td>
+				<td>{{user.first_name}} {{user.last_name}}</td>
+				<td>{{user.email}}</td>
+				<td>{{user.created_at}}</td>
+				<td>
+					<a href="{{user.id}}/edit">Edit</a>
+					<a href="{{user.id}}/delete">Delete</a>
+					</td>
+			</tr>
+
+
+		</table>
+	</div>
+</body>
+
+</html>
